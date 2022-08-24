@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
+            $table->string('student_id');
+            $table->string('position_id');
+            $table->string('school_year');
+            $table->string('partylist_id');
             $table->timestamps();
         });
     }

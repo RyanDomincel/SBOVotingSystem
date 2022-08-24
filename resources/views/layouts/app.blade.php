@@ -28,7 +28,6 @@
 </head>
 
 <body>
-    <div id="particles-js"></div>
 
     <div class="main-content">
         @yield('content')

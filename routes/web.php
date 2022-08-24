@@ -23,7 +23,7 @@ Route::get('/admin', 'App\Http\Controllers\AdminController@landing')->name("admi
 Route::get('/admin/manage_candidate/edit', 'App\Http\Controllers\CandidateController@edit_candidate')->name("manage_candidate.edit_candidate");//for static purposes -- must use edit part of the controller to be able to fetch data from DB
 Route::resource('admin/manage_candidate', 'App\Http\Controllers\CandidateController'); //for db 
 
-Route::get('/admin/manage_voter/edit', 'App\Http\Controllers\VoterController@edit_voter')->name("manage_voter.edit_voter");//for static purposes -- must use edit part of the controller to be able to fetch data from DB
+// Route::get('/admin/manage_voter/edit', 'App\Http\Controllers\VoterController@edit_voter')->name("manage_voter.edit_voter");//for static purposes -- must use edit part of the controller to be able to fetch data from DB
 Route::resource('admin/manage_voter', 'App\Http\Controllers\VoterController'); //for db 
 
 

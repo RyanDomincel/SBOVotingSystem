@@ -10,21 +10,20 @@ particlesJS.load('particles-js', 'particles.json', function() {
 */
 
 /* Otherwise just put the config content (json): */
+window.addEventListener("DOMContentLoaded", (event) => {
+    /* ---- particles.js config ---- */
 
-particlesJS(
-    "particles-js",
-
-    {
+    particlesJS("particles-js", {
         particles: {
             number: {
-                value: 80,
+                value: 202,
                 density: {
                     enable: true,
-                    value_area: 800,
+                    value_area: 961.4460148062693,
                 },
             },
             color: {
-                value: "#0D3376",
+                value: "#23a1b9",
             },
             shape: {
                 type: "circle",
@@ -52,7 +51,7 @@ particlesJS(
                 },
             },
             size: {
-                value: 5,
+                value: 4.00602506169279,
                 random: true,
                 anim: {
                     enable: false,
@@ -63,8 +62,8 @@ particlesJS(
             },
             line_linked: {
                 enable: true,
-                distance: 150,
-                color: "#ffffff",
+                distance: 160.24100246771155,
+                color: "#23a1b9",
                 opacity: 0.4,
                 width: 1,
             },
@@ -75,6 +74,7 @@ particlesJS(
                 random: false,
                 straight: false,
                 out_mode: "out",
+                bounce: false,
                 attract: {
                     enable: false,
                     rotateX: 600,
@@ -110,7 +110,8 @@ particlesJS(
                     speed: 3,
                 },
                 repulse: {
-                    distance: 200,
+                    distance: 146.07425441265985,
+                    duration: 0.4,
                 },
                 push: {
                     particles_nb: 4,
@@ -121,13 +122,5 @@ particlesJS(
             },
         },
         retina_detect: true,
-        config_demo: {
-            hide_card: false,
-            background_color: "#b61924",
-            background_image: "",
-            background_position: "50% 50%",
-            background_repeat: "no-repeat",
-            background_size: "cover",
-        },
-    }
-);
+    });
+});

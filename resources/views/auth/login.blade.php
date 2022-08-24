@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="particle-js"> </div>
-    <div class="container vh-100">
+    <div id="particles-js"></div>
+    <div class="container">
         <div class="row align-items-center vh-100">
             <div class="col-lg-4 col-md-6 col-sm-8 col-10 mx-auto formbox ">
                 <div class="bg-white p-3 rounded shadow-lg">

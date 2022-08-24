@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
+
 
 class VoterController extends Controller
 {
@@ -13,7 +16,10 @@ class VoterController extends Controller
      */
     public function index()
     {
-        return view('admin.manage_voter');
+        // $voters = User::all();
+        $voters = User::orderBy('id', 'asc')->simplePaginate(10);
+
+        return view('admin.manage_voter')-> with('voters', $voters);
     }
 
     /**
@@ -66,7 +72,8 @@ class VoterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $voters = User::find($id);
+        return view('admin.edit_voter')->with('voters',$voters);
     }
 
     /**

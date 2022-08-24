@@ -755,12 +755,28 @@ footer .copyright {
 
 /*===============small-screen overlay sidebar design media queries==============*/
 
-
+.formbox {
+    z-index: 3;
+}
 
 #particles-js {
     position: absolute;
     height: 100vh;
+    z-index: 2;
 }
+
+/* 
+.left {
+    text-align: end;
+}
+
+.table-view-vote {
+    height: 85vh;
+}
+
+.table-view-vote-thead {
+    height: 5vh;
+} */
 
 /* ---------------------------------------------------
     MEDIAQUERIES
