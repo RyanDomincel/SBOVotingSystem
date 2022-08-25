@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Candidates;
+use App\Models\User;
+// use Collective\Html\Eloquent\FormAccessible;
+
 
 class CandidateController extends Controller
 {
@@ -13,18 +18,15 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        return view('admin.manage_candidate');
+        // $candidates = Candidates::all();
+        // return view('admin.manage_candidate')-> with('candidates', $candidates);
+        $candidates = Candidates::with('user')->get();
+        // $users = User::with('candidate')->get();
+        // dd($candidates);
+        return view('admin.manage_candidate')-> with('candidates', $candidates);;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit_candidate()
-    {
-        return view('admin.edit_candidate');
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +35,11 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        return view('admin.create_candidate');
+        $users = User::with('candidate')->get();
+        $options = $users->pluck('name', 'id')->toArray();
+        // dd($options);
+
+        return view('admin.create_candidate')->with('options',$options);
     }
 
     /**
@@ -44,7 +50,10 @@ class CandidateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        // dd($input);
+        Candidates::create($input);
+        return redirect('admin/manage_candidate');
     }
 
     /**
@@ -55,7 +64,13 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        //
+        $candidates = Candidates::find($id);
+        $candidate_deets = DB::table('candidates')->where('id',$id)->get();
+        $data =[
+            'candidates'=> $candidates,
+            'candidate_deets'=>$candidate_deets,
+        ];
+        return view('admin.show_candidate')->with($data);
     }
 
     /**
@@ -65,8 +80,17 @@ class CandidateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {      
+
+        $candidate = Candidates::find($id);
+        $candidates = DB::table('candidates')->where('id',$id)->get();
+        $data =[
+            'candidates'=> $candidates,
+            'candidate'=>$candidate,
+        ];
+        // dd($data);
+
+        return view('admin.edit_candidate')->with($data);
     }
 
     /**
@@ -78,7 +102,11 @@ class CandidateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $candidates = Candidates::find($id);
+        $input = $request->all();
+        $candidates->update($input);
+        return redirect('admin/manage_candidate/'.$id);
     }
 
     /**
@@ -89,6 +117,7 @@ class CandidateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Candidates::destroy($id);
+        return redirect('admin/manage_candidate');
     }
 }

@@ -1,56 +1,61 @@
 @extends('layouts.admin_app')
 
 @section('content')
-    <form action="/admin/manage_voter/{{ $voters->id }}" method="POST">
-        {!! csrf_field() !!}
-        @method('PATCH')
-        <input type="hidden" name="id" value="{{ $voters->id }}">
-        <label for="name">Student Name</label>
-        <input type="text" value="{{ $voters->name }}" name="contactName" id="contactName" class="form-control" />
-        <br>
-        <label for="name">Email Address</label>
-        <input type="text" value="{{ $voters->email }}" name="contactNum" id="contactNum" class="form-control" />
-        <br>
-
-        <label for="name">Password</label>
-        <input type="text" value="{{ $voters->password }}" name="Address" id="Address" class="form-control" />
-        <label for="name">School Year</label>
-        <input type="text" value="{{ $voters->school_year }}" name="Address" id="Address" class="form-control" />
-        <br>
-        <input type="submit" value="Update" class="btn btn-primary">
-    </form>
-
-    <a href="{{ route('manage_voter.index') }}"><button class="btn btn-warning">Cancel</button></a>
-
-
-    {{-- <div class="container" style="width: 700px;">
-        <div class="card p-5 mt-5">
-            <form class="row ">
-                <div class="col-lg-8 d-inline-flex g-2">
-                    <label for="Name" class="form-label mt-2" style="margin-left: 40px;">NAME: </label>
-                    <input type="text" id="Name" class="form-control ">
+    <div class="container">
+        <div class="card p-5 mt-3">
+            <form class="" action="/admin/manage_voter/{{ $voters->id }}" method="POST">
+                {!! csrf_field() !!}
+                @method('PATCH')
+                <input type="hidden" name="id" value="{{ $voters->id }}">
+                <div class="">
+                    <label for="name" class="form-label mt-2 fw-bold">Student Name: </label>
+                    <input type="text" id="name" class="form-control " value="{{ $voters->name }}">
                 </div>
-                <div class="col-lg-4 d-inline-flex g-2">
-                    <label for="Schoolyr" class="form-label mt-2">S.Y: </label>
-                    <input type="text" id="Schoolyr" class="form-control w-100">
+                <div class="">
+                    <label for="email" class="form-label mt-2 fw-bold">Email Address: </label>
+                    <input type="text" id="email" class="form-control w-100"value="{{ $voters->email }}">
                 </div>
-
-                <div class="col-lg-8 d-inline-flex mt-3 g-2">
-                    <label for="Name" class="form-label mt-2 ms1">PASSWORD: </label>
-                    <input type="text" id="Name" class="form-control ">
+                <div class="row">
+                    <label for="password" class="form-label mt-2 fw-bold">Password: </label><br>
+                    <div class="d-inline-flex justify-content-between">
+                        <div class="col-lg-6 col-md-8 col-sm-7">
+                            <input type="text" id="password"
+                                class="form-control w-100 me-2"value="{{ $voters->password }}" name="password"
+                                onclick="this.select();">
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-4">
+                            <button type="button" id="generate" class="btn btn-primary w-100 mx-auto"
+                                onclick="randomString();"> GENERATE
+                            </button>
+                        </div>
+                        <div class="col-lg-2 d-lg-inline d-none">
+                            <button type="button" id="clear" class="btn btn-outline-primary w-100 mx-auto"
+                                onclick="ClearFields()"> CLEAR
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 d-inline-flex mt-3">
-                    <button type="button" id="create" class="btn btn-primary mx-auto w-100"> GENERATE </button>
+                <div class="">
+                    <label for="name"class="fw-bold">School Year</label>
+                    <input type="text" value="{{ $voters->school_year }}" name="Address" id="Address"
+                        class="form-control" />
                 </div>
 
-                <div class="col-lg-6 d-flex justify-content-start mt-5">
-                    <button type="button" id="print" class="btn btn-primary"> PRINT </button>
-                </div>
-                <div class="col-lg-6  d-flex justify-content-end  mt-5">
-                    <button type="button" id="create" class="btn btn-primary me-2"> CREATE </button>
-                </div>
 
+                <div class="row mt-3">
+                    <div class="col-lg-8 col-md-10 col-sm-12 text-end">
+
+                        <button type="submit" id="create" class="btn btn-primary"> UPDATE </button>
+                        <button type="button" id="print" class="btn btn-outline-success"> PRINT </button>
             </form>
+
+            <a href="{{ route('manage_voter.index') }}" class=""><button type="button"
+                    class="btn btn-outline-success ">GO
+                    BACK</button></a>
         </div>
-    </div> --}}
+    </div>
+    </div>
+
+    </div>
+    </div>
 @endsection

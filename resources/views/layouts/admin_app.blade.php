@@ -48,6 +48,7 @@
 
                 <!-- 1st menu HOME-->
                 <li class="{{ Route::is('admin.index') ? 'active' : '' }}">
+                    {{-- <li> --}}
                     <a href="{{ route('admin.index') }}" class="dashboard">
                         <i class="material-icons"> home </i><span>View Election Status</span>
                     </a>
@@ -55,6 +56,8 @@
 
                 <!-- 2nd menu -->
                 <li class="{{ Route::is('manage_voter.index') ? 'active' : '' }}">
+                    {{-- <li> --}}
+
                     <a href="{{ route('manage_voter.index') }}">
                         <i class="material-icons">group_add</i><span>Manage Voter Details</span>
                     </a>
@@ -62,6 +65,8 @@
 
                 <!-- 3rd menu -->
                 <li class="{{ Route::is('manage_candidate.index') ? 'active' : '' }}">
+                    {{-- <li> --}}
+
                     <a href="{{ route('manage_candidate.index') }}">
                         <i class="material-icons">engineering</i><span>Manage Candidate Details</span>
                     </a>

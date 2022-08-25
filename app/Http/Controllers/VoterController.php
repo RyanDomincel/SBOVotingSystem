@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Candidates;
 use App\Models\User;
 
 
@@ -17,7 +18,7 @@ class VoterController extends Controller
     public function index()
     {
         // $voters = User::all();
-        $voters = User::orderBy('id', 'asc')->simplePaginate(10);
+        $voters = User::orderBy('id', 'asc')->simplePaginate(25);
 
         return view('admin.manage_voter')-> with('voters', $voters);
     }
@@ -27,10 +28,6 @@ class VoterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit_voter()
-    {
-        return view('admin.edit_voter');
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -50,7 +47,9 @@ class VoterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        User::create($input);
+        return redirect('admin/manage_voter');
     }
 
     /**
@@ -61,7 +60,13 @@ class VoterController extends Controller
      */
     public function show($id)
     {
-        //
+        $voters = User::find($id);
+        $voter_deets = DB::table('users')->where('id',$id)->get();
+        $data =[
+            'voters'=> $voters,
+            'voter_deets'=>$voter_deets,
+        ];
+        return view('admin.show_voter')->with($data);
     }
 
     /**
@@ -72,8 +77,8 @@ class VoterController extends Controller
      */
     public function edit($id)
     {
-        $voters = User::find($id);
-        return view('admin.edit_voter')->with('voters',$voters);
+        $voter = User::find($id);
+        return view('admin.edit_voter')->with('voters',$voter);
     }
 
     /**
@@ -85,7 +90,10 @@ class VoterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $voters = User::find($id);
+        $input = $request->all();
+        $voters->update($input);
+        return redirect('admin/manage_voter/'.$id);
     }
 
     /**
@@ -96,6 +104,7 @@ class VoterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect('admin/manage_voter');
     }
 }

@@ -73,14 +73,25 @@
                                         <tr>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
-                                            <td>{{ $item->password }}</td>
+                                            @if (empty($item->password))
+                                                <td>Not yet Generated</td>
+                                            @else
+                                                <td>*****************</td>
+                                            @endif
                                             <td>{{ $item->school_year }}</td>
                                             <td class="text-center">
                                                 <a href="/admin/manage_voter/{{ $item->id }}/edit"><button
                                                         class="btn btn-primary w-100">Edit</button></a>
                                             </td>
-                                            <td class="text-center"><button
-                                                    class="btn btn-outline-danger w-100">Delete</button>
+                                            <td class="text-center">
+                                                <form action="/admin/manage_voter/{{ $item->id }}" method="POST">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button type='submit' class="btn btn-outline-danger w-100"
+                                                        title="Delete Voter" onclick="return confirm('Are you sure?')">
+                                                        Delete Voter</button>
+
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

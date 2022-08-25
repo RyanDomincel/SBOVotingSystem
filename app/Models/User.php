@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Candidates;
 
-class User extends Authenticatable
+class Users extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -43,7 +44,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
-class Users extends Model
+class User extends Model
 {
     use HasFactory;
 
@@ -51,4 +52,9 @@ class Users extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['name','email','password', 'school_year'];
 
+    public function candidate(){
+        return $this->belongsTo(Candidates::class, 'student_id');
+    }
+
 }
+

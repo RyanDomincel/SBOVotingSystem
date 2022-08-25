@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="particles-js"></div>
     <div class="container">
         <div class="row align-items-center vh-100">
             <div class="col-lg-4 col-md-6 col-sm-8 col-10 mx-auto formbox ">
@@ -36,9 +35,15 @@
                             @enderror
                         </div>
                         <div class="mb-3 text-end">
+                            @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <small> {{ __('Forgot Your Password?') }}</small>
+                                </a>
+                            @endif
                             <button type="submit" class="btn btn-primary w-50">
                                 {{ __('Login') }}
                             </button>
+
                         </div>
                     </form>
                 </div>
